@@ -1,13 +1,14 @@
 /**
  * HelloApp.java - A simple Java application that extends the functionality of
- * HelloApp UC4. It accepts zero or more command-line arguments and prints a greeting.
- * It uses an enhanced for loop (for-each loop) to process multiple names.
+ * HelloApp UC5. It accepts zero or more command-line arguments and prints a greeting.
+ * It uses an enhanced for loop to process multiple names and the substring() method
+ * to remove the trailing delimiter.
  *
- * UC 5: Display "Hello" with Multiple Command-Line Arguments using Enhanced For Loop or Default Message
+ * UC 6: Display "Hello" with Multiple Command-Line Arguments using substring to Remove Trailing Delimiter
  *
  * @author HK
- * @version 5.0
- * @since UC4
+ * @version 6.0
+ * @since UC5
  */
 public class HelloApp {
 
@@ -18,20 +19,24 @@ public class HelloApp {
             // Default Handling: Graceful fallback when no arguments are provided
             System.out.println("Hello, World!");
         } else {
-            // StringBuilder: Efficient concatenation
+            // StringBuilder: Efficient string construction
             StringBuilder namesList = new StringBuilder();
 
             // Enhanced For Loop: Iterate through all arguments
             for (String name : args) {
-                // Conditional Delimiter Logic: Avoid leading comma
-                if (namesList.length() > 0) {
-                    namesList.append(", ");
-                }
-                namesList.append(name);
+                // Always append the name AND the delimiter
+                namesList.append(name).append(", ");
             }
 
-            // String Concatenation: Build the final greeting message
-            System.out.println("Hello, " + namesList.toString() + "!");
+            // Conditional Cleanup: Ensure the builder isn't empty before using substring
+            if (namesList.length() > 0) {
+                // substring() Method: Extract all characters except the last two (", ")
+                // Using length() - 2 points to the position just before the delimiter
+                String finalNames = namesList.substring(0, namesList.length() - 2);
+                
+                // String Concatenation: Build the final greeting message
+                System.out.println("Hello, " + finalNames + "!");
+            }
         }
     }
 }
