@@ -1,24 +1,40 @@
 /**
  * HelloApp.java - A simple Java application that extends the functionality of
- * HelloApp UC2. It accepts a user's name as a command-line argument and displays
- * a personalized greeting. If no argument is provided, it safely defaults to "World".
+ * HelloApp UC3. It accepts multiple names as command-line arguments and displays
+ * a personalized greeting for all names. If no names are provided, it defaults to "World".
  *
- * UC 3: Display "Hello" with Command-Line Argument or Default Message
+ * UC 4: Display "Hello" with Multiple Command-Line Arguments or Default Message
  *
  * @author HK
- * @version 3.0
- * @since UC2
+ * @version 4.0
+ * @since UC3
  */
 public class HelloApp {
-    
+
     public static void main(String[] args) {
-        
-        // Ternary Operator & Array Length Checking:
-        // condition ? valueIfTrue : valueIfFalse
-        // We check args.length to prevent ArrayIndexOutOfBoundsException
-        String name = (args.length > 0) ? args[0] : "World"; 
-        
-        // String Concatenation: Output greeting
-        System.out.println("Hello, " + name + "!");
+
+        // Conditional Logic: Check if any command-line arguments were provided
+        if (args.length > 0) {
+            
+            // StringBuilder: Efficiently building a string from multiple parts
+            StringBuilder namesList = new StringBuilder();
+
+            // For Loop: Iterate through the args array to collect all names
+            for (int i = 0; i < args.length; i++) {
+                namesList.append(args[i]);
+                
+                // Add a comma and space if it's not the last name in the array
+                if (i < args.length - 1) {
+                    namesList.append(", ");
+                }
+            }
+
+            // Display the personalized greeting with all names
+            System.out.println("Hello, " + namesList.toString() + "!");
+
+        } else {
+            // Default Value: Fallback message when no arguments are given
+            System.out.println("Hello, World!");
+        }
     }
 }
