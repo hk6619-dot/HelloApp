@@ -1,40 +1,37 @@
 /**
  * HelloApp.java - A simple Java application that extends the functionality of
- * HelloApp UC3. It accepts multiple names as command-line arguments and displays
- * a personalized greeting for all names. If no names are provided, it defaults to "World".
+ * HelloApp UC4. It accepts zero or more command-line arguments and prints a greeting.
+ * It uses an enhanced for loop (for-each loop) to process multiple names.
  *
- * UC 4: Display "Hello" with Multiple Command-Line Arguments or Default Message
+ * UC 5: Display "Hello" with Multiple Command-Line Arguments using Enhanced For Loop or Default Message
  *
  * @author HK
- * @version 4.0
- * @since UC3
+ * @version 5.0
+ * @since UC4
  */
 public class HelloApp {
 
     public static void main(String[] args) {
 
-        // Conditional Logic: Check if any command-line arguments were provided
-        if (args.length > 0) {
-            
-            // StringBuilder: Efficiently building a string from multiple parts
+        // Array Length Check: Detect missing arguments
+        if (args.length == 0) {
+            // Default Handling: Graceful fallback when no arguments are provided
+            System.out.println("Hello, World!");
+        } else {
+            // StringBuilder: Efficient concatenation
             StringBuilder namesList = new StringBuilder();
 
-            // For Loop: Iterate through the args array to collect all names
-            for (int i = 0; i < args.length; i++) {
-                namesList.append(args[i]);
-                
-                // Add a comma and space if it's not the last name in the array
-                if (i < args.length - 1) {
+            // Enhanced For Loop: Iterate through all arguments
+            for (String name : args) {
+                // Conditional Delimiter Logic: Avoid leading comma
+                if (namesList.length() > 0) {
                     namesList.append(", ");
                 }
+                namesList.append(name);
             }
 
-            // Display the personalized greeting with all names
+            // String Concatenation: Build the final greeting message
             System.out.println("Hello, " + namesList.toString() + "!");
-
-        } else {
-            // Default Value: Fallback message when no arguments are given
-            System.out.println("Hello, World!");
         }
     }
 }
