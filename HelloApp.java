@@ -1,31 +1,24 @@
 /**
  * HelloApp.java - A simple Java application that extends the functionality of
- * HelloApp UC1 by accepting a user's name as a command-line argument and displaying
- * a personalized greeting.
+ * HelloApp UC2. It accepts a user's name as a command-line argument and displays
+ * a personalized greeting. If no argument is provided, it safely defaults to "World".
  *
- * UC 1: Display "Hello World" - The application should display the message
- * "Hello World" to the console when executed.
- * UC 2: Display User Name - The application should accept a user's name as
- * a command-line argument and display a personalized greeting.
+ * UC 3: Display "Hello" with Command-Line Argument or Default Message
  *
  * @author HK
- * @version 2.0
- * @since UC1
+ * @version 3.0
+ * @since UC2
  */
 public class HelloApp {
     
-    // Main Method: Entry point for program execution
     public static void main(String[] args) {
         
-        // Conditional Logic: Check if command-line arguments exist [cite: 311, 363]
-        if (args.length > 0) {
-            // Get the name from the first command-line argument [cite: 310, 341]
-            String name = args[0];
-            // String Concatenation: Output personalized greeting [cite: 313, 342, 343]
-            System.out.println("Hello, " + name + "!");
-        } else {
-            // Default Value: Fallback message when no arguments are given [cite: 368]
-            System.out.println("Hello World!");
-        }
+        // Ternary Operator & Array Length Checking:
+        // condition ? valueIfTrue : valueIfFalse
+        // We check args.length to prevent ArrayIndexOutOfBoundsException
+        String name = (args.length > 0) ? args[0] : "World"; 
+        
+        // String Concatenation: Output greeting
+        System.out.println("Hello, " + name + "!");
     }
 }
